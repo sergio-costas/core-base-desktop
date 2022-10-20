@@ -9,7 +9,6 @@ mount -t proc proc /proc
 trap 'umount /proc' EXIT
 
 apt install --no-install-recommends -y \
-    xterm \
     gdm3 \
     gnome-initial-setup \
     polkitd \
@@ -87,17 +86,17 @@ sed -i "/^ReadWritePaths=/ a \\  /var/lib/extrausers/ \\\\" \
 ## Re-enable the language page of gnome-initial-setup
 #sed -i '/skip=/ s/language;*//' /usr/share/gnome-initial-setup/vendor.conf
 
-# Write an X session that launches xterm
-mkdir -p /usr/share/xsessions
-cat <<\EOF > /usr/share/xsessions/xterm-session.desktop
+# Register the confined session as the only option in GDM
+rm -f /usr/share/wayland-sessions/*.desktop
+cat <<\EOF > /usr/share/wayland-sessions/ubuntu-desktop-session.desktop
 [Desktop Entry]
-Name=Xterm Session
-Comment=This session spawns an xterm
-Exec=/usr/bin/xterm -geometry 80x40+10+10
-TryExec=/usr/bin/gnome-shell
+Name=Ubuntu (confined)
+Comment=This session logs you into Ubuntu
+Exec=/snap/ubuntu-desktop-session/current/session-wrapper.sh
+TryExec=/snap/ubuntu-desktop-session/current/session-wrapper.sh
 Type=Application
 DesktopNames=ubuntu:GNOME
-X-GDM-SessionRegisters=false
+X-GDM-SessionRegisters=true
 EOF
 
 # Run GNOME Shell with XWayland disabled
