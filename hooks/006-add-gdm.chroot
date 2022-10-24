@@ -86,7 +86,7 @@ sed -i "/^ReadWritePaths=/ a \\  /var/lib/extrausers/ \\\\" \
 #sed -i '/skip=/ s/language;*//' /usr/share/gnome-initial-setup/vendor.conf
 
 # Register the confined session as the only option in GDM
-rm -f /usr/share/wayland-sessions/*.desktop
+#rm -f /usr/share/wayland-sessions/*.desktop
 cat <<\EOF > /usr/share/wayland-sessions/ubuntu-desktop-session.desktop
 [Desktop Entry]
 Name=Ubuntu (confined)
