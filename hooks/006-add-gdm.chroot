@@ -86,20 +86,20 @@ sed -i "/^ReadWritePaths=/ a \\  /var/lib/extrausers/ \\\\" \
 #sed -i '/skip=/ s/language;*//' /usr/share/gnome-initial-setup/vendor.conf
 
 # Register the confined session as the only option in GDM
-#rm -f /usr/share/wayland-sessions/*.desktop
+rm -f /usr/share/wayland-sessions/*.desktop
 cat <<\EOF > /usr/share/wayland-sessions/ubuntu-desktop-session.desktop
 [Desktop Entry]
 Name=Ubuntu (confined)
 Comment=This session logs you into Ubuntu
 Exec=/snap/ubuntu-desktop-session/current/session-wrapper.sh
-TryExec=/snap/ubuntu-desktop-session/current/session-wrapper.sh
+#TryExec=/snap/ubuntu-desktop-session/current/session-wrapper.sh
 Type=Application
 DesktopNames=ubuntu:GNOME
 X-GDM-SessionRegisters=true
 EOF
 
 # Run GNOME Shell with XWayland disabled
-sed -i 's=/usr/bin/gnome-shell=/usr/bin/gnome-shell --no-x11=g' /usr/lib/systemd/user/org.gnome.Shell@wayland.service
-sed -i 's=/usr/bin/gnome-shell=/usr/bin/gnome-shell --no-x11=g' /usr/lib/systemd/user/org.gnome.Shell@x11.service
+#sed -i 's=/usr/bin/gnome-shell=/usr/bin/gnome-shell --no-x11=g' /usr/lib/systemd/user/org.gnome.Shell@wayland.service
+#sed -i 's=/usr/bin/gnome-shell=/usr/bin/gnome-shell --no-x11=g' /usr/lib/systemd/user/org.gnome.Shell@x11.service
 sed -i 's=/usr/bin/gnome-shell=/usr/bin/gnome-shell --no-x11=g' /usr/share/applications/org.gnome.Shell.desktop
 sed -i 's/org.gnome.SettingsDaemon.XSettings;//g' /usr/share/gnome-session/sessions/ubuntu.session
