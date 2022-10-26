@@ -33,6 +33,7 @@ apt install --no-install-recommends -y \
     gnome-shell-extension-ubuntu-dock \
     gnome-control-center \
     xdg-desktop-portal \
+    xdg-desktop-portal-gnome \
     xdg-desktop-portal-gtk
 
 # Remove setuid from some executables we're not using
@@ -53,6 +54,7 @@ ln -s gdm.service /lib/systemd/system/display-manager.service
 # ubuntu-desktop-session snap.
 rm /usr/share/dbus-1/services/org.gnome.Nautilus.service
 rm /usr/share/dbus-1/services/org.gnome.Terminal.service
+rm /usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.gnome.service
 rm /usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.gtk.service
 
 # Disable console-conf, since it interferes with GDM taking over
