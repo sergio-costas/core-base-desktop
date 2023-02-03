@@ -74,12 +74,14 @@ parts:
       craftctl default
     override-prime: |
       # Do nothing
+
   splash-theme:
     plugin: dump
     source: https://github.com/snapcore/plymouth-theme-ubuntu-core.git
     source-type: git
     organize:
       ubuntu-core: usr/share/plymouth/themes/ubuntu-core
+
   bootstrap:
     after:
       - probert-deb
@@ -95,5 +97,6 @@ parts:
       craftctl default
     override-prime: |
       craftctl default
+      rm -f etc/systemd/user/pipewire-session-manager.service
       # ensure build-in tests are run
       cd ${CRAFT_PART_SRC} && make test TESTDIR=${CRAFT_PRIME}

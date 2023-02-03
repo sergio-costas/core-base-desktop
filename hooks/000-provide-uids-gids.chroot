@@ -122,6 +122,7 @@ geoclue:x:111:120::/var/lib/geoclue:/bin/false
 gdm:x:112:121:Gnome Display Manager:/var/lib/gdm3:/bin/false
 colord:x:113:123:colord colour management daemon:/var/lib/colord:/usr/sbin/nologin
 gnome-initial-setup:x:114:65534::/run/gnome-initial-setup/:/bin/false
+rtkit:x:107:124:RealtimeKit,,,:/proc:/usr/sbin/nologin
 EOF
 cp /etc/passwd /etc/passwd.orig # We make a copy for a later sanity-compare
 
@@ -160,6 +161,7 @@ geoclue:*:18459:0:99999:7:::
 gdm:*:18459:0:99999:7:::
 colord:*:18495:0:99999:7:::
 gnome-initial-setup:*:18495:0:99999:7:::
+rtkit:*:19390:0:99999:7:::
 EOF
 cp /etc/shadow /etc/shadow.orig # We make a copy for a later sanity-compare
 
@@ -226,6 +228,8 @@ geoclue:x:120:
 gdm:x:121:
 scanner:x:122:
 colord:x:123:
+pipewire:x:113:
+rtkit:x:124:
 EOF
 cp /etc/group /etc/group.orig # We make a copy for a later sanity-compare
 
@@ -292,5 +296,7 @@ geoclue:!::
 gdm:!::
 scanner:!::
 colord:!::
+pipewire:!::
+rtkit:!::
 EOF
 cp /etc/gshadow /etc/gshadow.orig # We make a copy for a later sanity-compare
