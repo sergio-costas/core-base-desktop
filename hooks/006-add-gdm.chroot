@@ -24,7 +24,13 @@ apt install --no-install-recommends -y \
     xdg-user-dirs \
     pipewire \
     wireplumber \
-    pipewire-pulse
+    pipewire-pulse \
+    pulseaudio-utils \
+    libgsound0 \
+    gsound-tools \
+    gir1.2-gsound-1.0 \
+    libcanberra-pulse \
+    libsnapd-glib1
 
 # Install a basic Ubuntu session
 apt install --no-install-recommends -y \
