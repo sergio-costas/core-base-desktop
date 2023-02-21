@@ -77,6 +77,16 @@ exec /usr/sbin/adduser.real --extrausers "$@"
 EOF
 chmod a+x /usr/sbin/adduser
 
+# Force gsd-xsettings to use the regular DISPLAY connection. If it
+# tries to connect to :1, gnome-shell will not auto-start Xwayland.
+mv /usr/libexec/gsd-xsettings /usr/libexec/gsd-xsettings.real
+cat <<\EOF > /usr/libexec/gsd-xsettings
+#!/bin/sh
+export GNOME_SETUP_DISPLAY="$DISPLAY"
+exec /usr/libexec/gsd-xsettings.real "$@"
+EOF
+chmod a+x /usr/libexec/gsd-xsettings
+
 # accounts-daemon uses systemd to lock down the paths it can write
 # to. That list of paths does not include the extrausers database used
 # by Ubuntu Core.
@@ -98,7 +108,3 @@ Type=Application
 DesktopNames=ubuntu:GNOME
 X-GDM-SessionRegisters=true
 EOF
-
-# Run GNOME Shell with XWayland disabled
-sed -i 's/org.gnome.SettingsDaemon.XSettings;//g' /usr/share/gnome-session/sessions/ubuntu.session
-sed -i 's/org.gnome.SettingsDaemon.XSettings;//g' /usr/share/gnome-session/sessions/gnome-login.session
