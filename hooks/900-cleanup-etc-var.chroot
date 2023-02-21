@@ -62,7 +62,7 @@ rm -rf /usr/local/lib/python*
 rmdir /etc/cron.daily
 
 # no permanet journal
-rm -rf /var/log/journal
+#rm -rf /var/log/journal
 
 # systemd-tmpfiles creates this new dir now
 rmdir /var/log/private
