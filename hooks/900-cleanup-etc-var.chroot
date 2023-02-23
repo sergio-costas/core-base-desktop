@@ -62,7 +62,7 @@ rm -rf /usr/local/lib/python*
 rmdir /etc/cron.daily
 
 # no permanet journal
-#rm -rf /var/log/journal
+rm -rf /var/log/journal
 
 # systemd-tmpfiles creates this new dir now
 rmdir /var/log/private
@@ -72,6 +72,11 @@ rm -rf /var/log/gdm3
 
 # clean leftovers from the build
 rm /var/log/*
+
+# Re-enable journal
+mkdir /var/log/journal
+chown root:systemd-journal /var/log/journal
+chmod 2755 /var/log/journal
 
 # no "local" on core22
 # shellcheck disable=SC2114
