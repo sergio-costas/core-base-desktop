@@ -61,9 +61,6 @@ rm /etc/systemd/system/display-manager.service
 ln -s gdm.service /lib/systemd/system/display-manager.service
 sed -i '/^Description=/ a # delay until snapd finishes seeding\nAfter=snapd.seeded.service' /lib/systemd/system/gdm.service
 
-# Remove D-Bus service activation for pipewire
-rm -f /etc/systemd/user/pipewire-session-manager.service
-
 # Remove D-Bus service activation files provided by
 # ubuntu-desktop-session snap.
 rm /usr/share/dbus-1/services/org.gnome.Nautilus.service
