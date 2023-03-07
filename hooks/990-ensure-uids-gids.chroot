@@ -26,7 +26,9 @@ rc=$?; [ "$rc" != "0" ] && MISMATCH=1
 
 # uid 107 is used by rtkit
 
-# gid 113 is used by pipewire
+echo "Ensure no group 113 (ex-docker)"
+cut -d: -f3 /etc/group | grep -q 113
+rc=$?; [ "$rc" = "0" ] && MISMATCH=1
 
 if [ -n "$MISMATCH" ]; then
     echo "There were changes to the password database."

@@ -123,6 +123,7 @@ gdm:x:112:121:Gnome Display Manager:/var/lib/gdm3:/bin/false
 colord:x:113:123:colord colour management daemon:/var/lib/colord:/usr/sbin/nologin
 gnome-initial-setup:x:114:65534::/run/gnome-initial-setup/:/bin/false
 rtkit:x:107:124:RealtimeKit,,,:/proc:/usr/sbin/nologin
+pipewire:x:125:125:Pipewire,,,:/proc:/usr/sbin/nologin
 EOF
 cp /etc/passwd /etc/passwd.orig # We make a copy for a later sanity-compare
 
@@ -228,8 +229,8 @@ geoclue:x:120:
 gdm:x:121:
 scanner:x:122:
 colord:x:123:
-pipewire:x:113:
 rtkit:x:124:
+pipewire:x:125:
 EOF
 cp /etc/group /etc/group.orig # We make a copy for a later sanity-compare
 
