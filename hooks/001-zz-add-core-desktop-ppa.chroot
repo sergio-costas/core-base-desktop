@@ -40,23 +40,6 @@ jXjiWv0P2PA0Vg==
 EOF
 echo "deb http://ppa.launchpad.net/desktop-snappers/core-desktop/ubuntu jammy main" > /etc/apt/sources.list.d/desktop-snappers.list
 
-# enable desktop-snappers PPA
-cat << \EOF > /etc/apt/trusted.gpg.d/rastersoft-gmail-pipewire-core.asc
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-xo0EUHIJfgEEANEe4iUM6AVxnQ9GcI7EAUXo6forbtdM02itbBflLolhWrDpAA3K
-X5qgwTn3PzT7jlFQV8rnmMMKN8Pk/wD63N7qGFZFiv2yl2UFdI/D2gQh5qhGFZf9
-GloLsG48eaeqtSx5aJczzT2u3O+0FGdKLbkl6x6x2HundgLy2YQDR4oTABEBAAHN
-H0xhdW5jaHBhZCBQUEEgZm9yIFNlcmdpbyBDb3N0YXPCuAQTAQIAIgUCUHIJfgIb
-AwYLCQgHAwIGFQgCCQoLBBYCAwECHgECF4AACgkQF3OD0dJgRhjR7gP+LLLehJZh
-a9V7+unXQMTkbtbhTs8DriQ9VvH6R00oE64zrgE8ZYvLKKOhJZFuLWocjaRtgoQ0
-Yq4Efh7xNm2rrDiRnR6lZYc2lJ9/VB0Lkl3BJ2dmW6W0wYjfCa2JSI04uszdQGT/
-1DI6tjh8jnjlbajK0M083aCicHj1ETDge44=
-=GPGk
------END PGP PUBLIC KEY BLOCK-----
-EOF
-echo "deb https://ppa.launchpadcontent.net/rastersoft-gmail/pipewire-core/ubuntu jammy main" > /etc/apt/sources.list.d/pipewire.list
-
 
 apt-get update
 apt-get upgrade -y
