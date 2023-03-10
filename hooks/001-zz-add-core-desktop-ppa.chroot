@@ -40,5 +40,6 @@ jXjiWv0P2PA0Vg==
 EOF
 echo "deb http://ppa.launchpad.net/desktop-snappers/core-desktop/ubuntu jammy main" > /etc/apt/sources.list.d/desktop-snappers.list
 
+
 apt-get update
 apt-get upgrade -y

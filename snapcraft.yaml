@@ -95,5 +95,6 @@ parts:
       craftctl default
     override-prime: |
       craftctl default
+      rm -f /etc/systemd/user/pipewire-session-manager.service
       # ensure build-in tests are run
       cd ${CRAFT_PART_SRC} && make test TESTDIR=${CRAFT_PRIME}
