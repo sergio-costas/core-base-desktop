@@ -68,6 +68,14 @@ rm /usr/share/dbus-1/services/org.gnome.Terminal.service
 rm /usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.gnome.service
 rm /usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.gtk.service
 
+# Remove systemd activation in services managed by
+# ubuntu-desktop-session snap
+rm -f /usr/lib/systemd/user/pipewire*
+rm -f /usr/lib/systemd/user/wireplumber*
+rm -rf /etc/systemd/user/pipewire*
+rm -f /etc/systemd/user/sockets.target.wants/pipewire*
+rm -f /etc/systemd/user/default.target.wants/pipewire*
+
 # Disable console-conf, since it interferes with GDM taking over
 # /dev/tty1.  Due to the ExecStartPre/ExecStopPost commands, we can't
 # reliably get rid of it with Conflicts/After
