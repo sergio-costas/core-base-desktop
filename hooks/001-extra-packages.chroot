@@ -100,6 +100,7 @@ PACKAGES=(
     libp11-3
     libpam-modules
     libpam-systemd
+    libspa-0.2-bluetooth
     netcat-openbsd
     netplan.io
     opensc
