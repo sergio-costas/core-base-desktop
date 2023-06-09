@@ -67,6 +67,7 @@ rm /usr/share/dbus-1/services/org.gnome.Nautilus.service
 rm /usr/share/dbus-1/services/org.gnome.Terminal.service
 rm /usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.gnome.service
 rm /usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.gtk.service
+rm /usr/share/dbus-1/services/org.gnome.Shell.Screencast.service
 
 # Remove systemd activation in services managed by
 # ubuntu-desktop-session snap
