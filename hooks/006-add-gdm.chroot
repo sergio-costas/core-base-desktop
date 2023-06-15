@@ -118,3 +118,8 @@ sed -i "/^ReadWritePaths=/ a \\  /var/lib/extrausers/ \\\\" \
 rm -f /usr/share/wayland-sessions/ubuntu.desktop
 rm -f /usr/share/wayland-sessions/ubuntu-wayland.desktop
 rm -f /usr/share/xsessions/ubuntu-xorg.desktop
+
+# Move GDM config to writable directory
+mkdir -p /etc/writable/gdm3
+mv /etc/gdm3/custom.conf /etc/writable/gdm3/custom.conf
+ln -s ../writable/gdm3/custom.conf /etc/gdm3/custom.conf
