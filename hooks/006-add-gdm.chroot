@@ -30,7 +30,8 @@ apt install --no-install-recommends -y \
     gsound-tools \
     gir1.2-gsound-1.0 \
     libcanberra-pulse \
-    libsnapd-glib1
+    libsnapd-glib1\
+    ibus
 
 # Install a basic Ubuntu session
 apt install --no-install-recommends -y \
@@ -68,6 +69,8 @@ rm /usr/share/dbus-1/services/org.gnome.Terminal.service
 rm /usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.gnome.service
 rm /usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.gtk.service
 rm /usr/share/dbus-1/services/org.gnome.Shell.Screencast.service
+rm -f /usr/share/dbus-1/services/org.freedesktop.IBus.service
+rm -f /usr/share/dbus-1/services/org.freedesktop.portal.IBus.service
 
 # Remove systemd activation in services managed by
 # ubuntu-desktop-session snap
@@ -76,6 +79,9 @@ rm -f /usr/lib/systemd/user/wireplumber*
 rm -rf /etc/systemd/user/pipewire*
 rm -f /etc/systemd/user/sockets.target.wants/pipewire*
 rm -f /etc/systemd/user/default.target.wants/pipewire*
+rm -f /usr/lib/systemd/user/org.freedesktop.IBus.session.GNOME.service
+rm -f /usr/lib/systemd/user/org.freedesktop.IBus.session.generic.service
+rm -f /usr/lib/systemd/user/gnome-session.target.wants/org.freedesktop.IBus.session.GNOME.service
 
 # Disable console-conf, since it interferes with GDM taking over
 # /dev/tty1.  Due to the ExecStartPre/ExecStopPost commands, we can't
