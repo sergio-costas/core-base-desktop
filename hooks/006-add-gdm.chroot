@@ -120,6 +120,9 @@ sed -i "/^ReadWritePaths=/ a \\  /var/lib/extrausers/ \\\\" \
 ## Re-enable the language page of gnome-initial-setup
 #sed -i '/skip=/ s/language;*//' /usr/share/gnome-initial-setup/vendor.conf
 
+# Hide gnome-terminal by default
+sed -i 's/OnlyShowIn=/NoDisplay=true\nOnlyShowIn=/g' /usr/share/applications/org.gnome.Terminal.desktop
+
 # Remove regular Ubuntu sessions, so only confined session is available
 rm -f /usr/share/wayland-sessions/ubuntu.desktop
 rm -f /usr/share/wayland-sessions/ubuntu-wayland.desktop
