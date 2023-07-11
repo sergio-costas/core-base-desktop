@@ -82,6 +82,7 @@ rm -f /etc/systemd/user/default.target.wants/pipewire*
 rm -f /usr/lib/systemd/user/org.freedesktop.IBus.session.GNOME.service
 rm -f /usr/lib/systemd/user/org.freedesktop.IBus.session.generic.service
 rm -f /usr/lib/systemd/user/gnome-session.target.wants/org.freedesktop.IBus.session.GNOME.service
+rm -f /usr/lib/systemd/user/colord-session.service
 
 # Disable console-conf, since it interferes with GDM taking over
 # /dev/tty1.  Due to the ExecStartPre/ExecStopPost commands, we can't
