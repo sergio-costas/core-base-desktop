@@ -132,3 +132,6 @@ rm -f /usr/share/xsessions/ubuntu-xorg.desktop
 mkdir -p /etc/writable/gdm3
 mv /etc/gdm3/custom.conf /etc/writable/gdm3/custom.conf
 ln -s ../writable/gdm3/custom.conf /etc/gdm3/custom.conf
+
+# Disable gnome-shell systemd
+rm -f /usr/lib/systemd/user/org.gnome.Shell*
