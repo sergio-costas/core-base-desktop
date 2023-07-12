@@ -71,6 +71,7 @@ rm /usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.gtk.service
 rm /usr/share/dbus-1/services/org.gnome.Shell.Screencast.service
 rm -f /usr/share/dbus-1/services/org.freedesktop.IBus.service
 rm -f /usr/share/dbus-1/services/org.freedesktop.portal.IBus.service
+rm -f /usr/share/dbus-1/services/org.freedesktop.ColorHelper.service
 
 # Remove systemd activation in services managed by
 # ubuntu-desktop-session snap
