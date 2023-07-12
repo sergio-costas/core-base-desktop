@@ -34,7 +34,9 @@ apt install --no-install-recommends -y \
     ibus
 
 # Install a basic Ubuntu session
-apt install --no-install-recommends -y \
+apt install --no-install-recommends -y --allow-downgrades \
+    gnome-shell=42.5-0ubuntu1+ucd2\
+    gnome-shell-common=42.5-0ubuntu1+ucd2 \
     ubuntu-session \
     gnome-terminal \
     gnome-settings-daemon \
