@@ -55,7 +55,7 @@ install:
 check:
 	# exclude "useless cat" from checks, while useless they also make
 	# some code more readable
-	shellcheck -e SC2002 hooks/*
+	shellcheck -e SC2002,SC1071 hooks/*
 
 .PHONY: test
 test:

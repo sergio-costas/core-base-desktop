@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+
+# Downloads all the base locales, keep the Gtk and Gnome ones,
+# and install them in the desktop snap.
+import os
+import glob
+
+DEST_BASE_DIR="/usr/share/locale-langpack"
+MO_LIST=["ibus10.mo", "gtk40.mo", "gtk30.mo", "gtk20.mo", "gnome-shell.mo"]
+
+os.system("apt install -y language-pack-gnome-*")
+
+for path in glob.glob(os.path.join(DEST_BASE_DIR, "*")):
+    full_path = os.path.join(path, "LC_MESSAGES", "*.mo")
+    for mofile in glob.glob(full_path):
+        if os.path.basename(mofile) not in MO_LIST:
+            os.unlink(mofile)
