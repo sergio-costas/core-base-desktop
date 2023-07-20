@@ -119,6 +119,7 @@ PACKAGES=(
     vim-tiny
     wpasupplicant
     xdg-utils
+    xkb-data
 )
 
 # Locally built packages
