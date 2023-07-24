@@ -45,8 +45,7 @@ apt install --no-install-recommends -y \
     libpam-gnome-keyring \
     xdg-desktop-portal \
     xdg-desktop-portal-gnome \
-    xdg-desktop-portal-gtk \
-    language-selector
+    xdg-desktop-portal-gtk
 
 # Remove setuid from some executables we're not using
 chmod u-s,g-s /usr/bin/pkexec
