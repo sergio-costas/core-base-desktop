@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 
-# Downloads all the base locales, keep the Gtk and Gnome ones,
-# and install them in the desktop snap.
 import os
 import glob
 
+# Download all the base locale languages and keep
+# only the Gtk and Gnome ones.
+
 DEST_BASE_DIR="/usr/share/locale-langpack"
-MO_LIST=["ibus10.mo", "gtk40.mo", "gtk30.mo", "gtk20.mo", "gnome-shell.mo"]
+MO_LIST=["ibus10.mo", "gtk40.mo", "gtk30.mo", "gtk20.mo", "gnome-shell.mo",
+         "gnome-control-center-2.0.mo", "gnome-desktop-3.0.mo",
+         "gnome-initial-setup.mo", "gnome-menus-3.0.mo", "language-selector.mo",
+         "xdg-desktop-portal-gnome.mo", "xdg-desktop-portal.mo",
+         "ibus-chewing.mo"]
 
 os.system("apt install -y language-pack-gnome-*")
 
@@ -15,3 +20,38 @@ for path in glob.glob(os.path.join(DEST_BASE_DIR, "*")):
     for mofile in glob.glob(full_path):
         if os.path.basename(mofile) not in MO_LIST:
             os.unlink(mofile)
+
+# fix ibus file. im-config -l calls it to check if ibus is installed,
+# but the original one calls to "package-status ibus", which uses dpkg
+# to check it, so it always fails.
+
+with open("/usr/share/im-config/data/21_ibus.conf", "w") as ibus_file:
+    ibus_file.write("""# vim: set sts=4 expandtab:
+IM_CONFIG_SHORT="$(gettext "activate Intelligent Input Bus (IBus)")"
+
+IM_CONFIG_LONG="$(gettext "Intelligent Input Bus (IBus)
+ * Required for all: ibus
+ * Language specific input conversion support:
+   * Japanese: ibus-mozc (best) or ibus-anthy or ibus-skk
+   * Korean: ibus-hangul
+   * Simplified Chinese: ibus-pinyin or ibus-sunpinyin or ibus-libpinyin
+   * Traditional Chinese: ibus-chewing or ibus-libzhuyin
+   * Thai: ibus-thai or ibus-table-thai
+   * Vietnamese: ibus-unikey or ibus-table-viqr
+   * X Keyboard emulation: (internal)
+   * Generic keyboard translation table: ibus-keyman, ibus-m17n, or ibus-table*
+ * Application platform support:
+   * Wayland: ibus-wayland
+   * GNOME/GTK: ibus-gtk4, ibus-gtk3 and ibus-gtk
+   * KDE/Qt: libqt5gui5
+   * Clutter: ibus-clutter
+   * EMACS: ibus-el")"
+
+package_auto () {
+    return 0
+}
+
+package_menu () {
+    return 0
+}
+""")

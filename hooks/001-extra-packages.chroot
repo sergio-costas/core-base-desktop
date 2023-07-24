@@ -89,6 +89,7 @@ PACKAGES=(
     finalrd
     gnutls-bin
     fonts-ubuntu
+    im-config
     iproute2
     iptables
     iputils-ping
