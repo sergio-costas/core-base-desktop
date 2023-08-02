@@ -141,18 +141,3 @@ rm -f /usr/lib/systemd/user/org.gnome.Shell*
 
 # Remove gnome-language-selector .desktop file
 rm -f /usr/share/applications/gnome-language-selector.desktop
-
-# Move locale, im-config and keyboard to writable directory
-mkdir -p /etc/writable/default
-if [ -f /etc/default/locale ]; then
-    mv /etc/default/locale /etc/writable/default/locale
-fi
-if [ -f /etc/default/im-config ]; then
-    mv /etc/default/im-config /etc/writable/default/im-config
-fi
-if [ -f /etc/default/keyboard ]; then
-    mv /etc/default/keyboard /etc/writable/default/keyboard
-fi
-ln -s /etc/writable/default/locale /etc/default/locale
-ln -s /etc/writable/default/im-config /etc/default/im-config
-ln -s /etc/writable/default/keyboard /etc/default/keyboard
