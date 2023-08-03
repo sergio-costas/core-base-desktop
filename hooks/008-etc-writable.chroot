@@ -19,3 +19,13 @@ for f in system user; do
     mkdir -p /etc/systemd/$f.conf.d
 done
 
+# Move locale, im-config and keyboard from /etc/default
+# to writable directory
+for f in locale im-config keyboard; do
+    if [ -e /etc/default/$f ]; then
+        echo "I: Moving /etc/default/$f to /etc/writable/default/"
+        mv /etc/default/$f /etc/writable/default/$f
+    fi
+    echo "I: Linking /etc/default/$f to /etc/writable/default/"
+    ln -s /etc/writable/default/$f /etc/default/$f
+done

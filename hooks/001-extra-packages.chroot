@@ -128,6 +128,7 @@ PACKAGES=(
     finalrd
     gnutls-bin
     fonts-ubuntu
+    im-config
     iproute2
     iptables
     iputils-ping
@@ -158,6 +159,7 @@ PACKAGES=(
     vim-tiny
     wpasupplicant
     xdg-utils
+    xkb-data
 )
 
 # Locally built packages

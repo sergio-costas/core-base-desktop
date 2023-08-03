@@ -138,3 +138,6 @@ ln -s ../writable/gdm3/custom.conf /etc/gdm3/custom.conf
 
 # Disable gnome-shell systemd
 rm -f /usr/lib/systemd/user/org.gnome.Shell*
+
+# Remove gnome-language-selector .desktop file
+rm -f /usr/share/applications/gnome-language-selector.desktop
