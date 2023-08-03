@@ -28,6 +28,9 @@ case "$1" in
         ;;
     stage)
         craftctl default
+        if [ -e ${CRAFT_PROJECT_DIR}/test-debs ]; then
+            /bin/cp -a ${CRAFT_PROJECT_DIR}/test-debs/* ${CRAFT_STAGE}/local-debs/
+        fi
         cd "${CRAFT_STAGE}/local-debs"
         dpkg-scanpackages . >Packages
         apt-ftparchive release . >Release
