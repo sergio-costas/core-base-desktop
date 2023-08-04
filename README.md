@@ -112,6 +112,16 @@ worked as expected.
 The `.test` scripts will be run after building with snapcraft or when
 doing a manual "make test" in the source tree.
 
+# Testing custom .deb packages
+
+Sometimes, modified .deb packages are required. These are uploaded into
+an specific PPA to make them available for building, but during development,
+they must be tested locally before. To do so, it is possible to create
+a folder called *test-debs* and copy inside the custom .deb packages.
+That folder is managed like a standard APT repository, and it is pinned
+to the maximum priority, thus ensuring that they will be installed over
+any other package.
+
 # Bootchart
 
 It is possible to enable bootcharts by adding `core.bootchart` to the
