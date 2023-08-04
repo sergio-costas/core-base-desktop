@@ -28,8 +28,14 @@ case "$1" in
         ;;
     stage)
         craftctl default
+        # It is possible to add .deb packages into a "test-debs" folder in the
+        # project. These packages are managed as an APT source, and pinned to
+        # have maximum priority, so, if installed from APT, they will have preference
+        # over the packages in the standard and PPA repositories, no matter their version
+        # number. This allows to easily test packages before uploading them to the
+        # Core Desktop PPA.
         if [ -e ${CRAFT_PROJECT_DIR}/test-debs ]; then
-            /bin/cp -a ${CRAFT_PROJECT_DIR}/test-debs/* ${CRAFT_STAGE}/local-debs/
+            cp -a ${CRAFT_PROJECT_DIR}/test-debs/*.deb ${CRAFT_STAGE}/local-debs/
         fi
         cd "${CRAFT_STAGE}/local-debs"
         dpkg-scanpackages . >Packages
