@@ -7,7 +7,7 @@ set -e
 ORIG_BASE_DIR="/usr/share/locale-langpack"
 DEST_BASE_DIR="/usr/share/locale"
 
-apt install -y language-pack-gnome-*
+apt install -y '^language-pack-gnome-[a-z]+-base$'
 
 for PATH in "$ORIG_BASE_DIR"/*; do
     LANG=$(/bin/basename "$PATH")
@@ -23,3 +23,5 @@ done
 
 /bin/rm -rf "$ORIG_BASE_DIR"
 /bin/rm -rf /usr/share/doc/language-pack-*
+/bin/rm -rf /usr/share/help-langpack
+/bin/rm -rf /usr/share/gnome/help-langpack/synaptic
