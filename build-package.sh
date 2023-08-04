@@ -35,7 +35,7 @@ case "$1" in
         # number. This allows to easily test packages before uploading them to the
         # Core Desktop PPA.
         if [ -e ${CRAFT_PROJECT_DIR}/test-debs ]; then
-            /bin/cp -a ${CRAFT_PROJECT_DIR}/test-debs/*.deb ${CRAFT_STAGE}/local-debs/
+            cp -a ${CRAFT_PROJECT_DIR}/test-debs/*.deb ${CRAFT_STAGE}/local-debs/
         fi
         cd "${CRAFT_STAGE}/local-debs"
         dpkg-scanpackages . >Packages
