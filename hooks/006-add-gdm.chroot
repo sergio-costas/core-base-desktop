@@ -60,8 +60,8 @@ mv /etc/dbus-1/system.d/gdm.conf /usr/share/dbus-1/system.d/
 # Move display-manager.service symlink out of /etc
 rm /etc/systemd/system/display-manager.service
 ln -s gdm.service /lib/systemd/system/display-manager.service
-# Delay gdm until snapd.seeded and cloud-init are complete
-sed -i '/^Description=/ a # delay until snapd finishes seeding\nAfter=snapd.seeded.service cloud-init.target' /lib/systemd/system/gdm.service
+# Delay gdm until snapd.seeded and cloud-config are complete
+sed -i '/^Description=/ a # delay until snapd finishes seeding\nAfter=snapd.seeded.service cloud-config.target' /lib/systemd/system/gdm.service
 
 # Remove D-Bus service activation files provided by
 # ubuntu-desktop-session snap.
