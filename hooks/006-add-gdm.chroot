@@ -30,7 +30,7 @@ apt install --no-install-recommends -y \
     gsound-tools \
     gir1.2-gsound-1.0 \
     libcanberra-pulse \
-    libsnapd-glib1\
+    libsnapd-glib1 \
     ibus
 
 # Install a basic Ubuntu session
@@ -43,6 +43,7 @@ apt install --no-install-recommends -y \
     gnome-shell-extension-ubuntu-dock \
     gnome-control-center \
     libpam-gnome-keyring \
+    spice-vdagent \
     xdg-desktop-portal \
     xdg-desktop-portal-gnome \
     xdg-desktop-portal-gtk
