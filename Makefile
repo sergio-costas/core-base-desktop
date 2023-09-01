@@ -33,6 +33,7 @@ install:
 	/bin/cp -a static/* $(DESTDIR)
 	mkdir -p $(DESTDIR)/install-data
 	/bin/cp -r $(CRAFT_STAGE)/local-debs $(DESTDIR)/install-data/local-debs
+	$(CRAFT_PROJECT_DIR)/generate-connections.py $(CRAFT_PROJECT_DIR)/snap-connections.txt $(DESTDIR)/snap-connections.sh
 	# customize
 	set -eux; for f in ./hooks/[0-9]*.chroot; do		\
 		base="$$(basename "$${f}")";			\
@@ -41,6 +42,7 @@ install:
 		rm "$(DESTDIR)/install-data/$${base}";		\
 	done
 	rm -rf $(DESTDIR)/install-data
+	rm -f $(DESTDIR)/snap-connections.sh
 
 	# see https://github.com/systemd/systemd/blob/v247/src/shared/clock-util.c#L145
 	touch $(DESTDIR)/usr/lib/clock-epoch
