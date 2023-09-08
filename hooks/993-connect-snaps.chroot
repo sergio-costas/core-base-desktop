@@ -2,10 +2,7 @@
 
 set -e
 
-if [ -f /snap-connections.sh ]; then
-    mkdir -p /usr/libexec
-    cp /snap-connections.sh /usr/libexec/
-    chmod 755 /usr/libexec/snap-connections.sh
+if [ -f /usr/libexec/snap-connections.sh ]; then
     cat >/etc/systemd/system/manual-plug-connection.service <<'EOF'
 [Unit]
 Description=Manually connect snap plugs.

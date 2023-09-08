@@ -2,6 +2,7 @@
 
 import sys
 import os
+import stat
 
 if len(sys.argv) != 3:
     print("Usage: generate-connections.py origin-file destination-file")
@@ -12,6 +13,10 @@ destination = sys.argv[2]
 
 if not os.path.isfile(origin):
     sys.exit(0)
+
+destination_dir = os.path.dirname(destination)
+if not os.path.exists(destination_dir):
+    os.makedirs(destination_dir)
 
 with open(origin, "rt") as origin_data:
     with open(destination, "wt") as destination_data:
@@ -44,3 +49,5 @@ while : ; do
     sleep 1
 done
 """)
+
+os.chmod(destination, 0o755)
