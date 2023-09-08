@@ -15,6 +15,7 @@ apt install --no-install-recommends -y \
     xwayland \
     libgl1-mesa-dri \
     locales-all \
+    locales \
     zenity \
     yaru-theme-gtk \
     yaru-theme-gnome-shell \
@@ -46,7 +47,8 @@ apt install --no-install-recommends -y \
     spice-vdagent \
     xdg-desktop-portal \
     xdg-desktop-portal-gnome \
-    xdg-desktop-portal-gtk
+    xdg-desktop-portal-gtk \
+    xdg-user-dirs-gtk
 
 # Remove setuid from some executables we're not using
 chmod u-s,g-s /usr/bin/pkexec
