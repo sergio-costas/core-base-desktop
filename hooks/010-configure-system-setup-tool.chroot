@@ -2,16 +2,27 @@
 
 set -e
 
-apt install zenity
+apt install --no-install-recommends -y zenity gnome-initial-setup
 
 # Launch ubuntu-core-desktop-init instead of gnome-initial-setup
-cp /usr/share/applications/gnome-initial-setup.desktop /usr/share/applications/ubuntu-core-desktop-init.desktop
+mv /usr/share/applications/gnome-initial-setup.desktop /usr/share/applications/ubuntu-core-desktop-init.desktop
 sed -i 's#/usr/libexec/gnome-initial-setup#/usr/libexec/launch-setup.sh#g' /usr/share/applications/ubuntu-core-desktop-init.desktop
 
 sed -i 's#gnome-initial-setup#ubuntu-core-desktop-init#g' /usr/share/gnome-session/sessions/gnome-initial-setup.session
 
 cp /usr/share/polkit-1/rules.d/20-gnome-initial-setup.rules /usr/share/polkit-1/rules.d/20-ubuntu-core-desktop-init.rules
 sed -i 's#gnome-initial-setup#ubuntu-core-desktop-init#g' /usr/share/polkit-1/rules.d/20-ubuntu-core-desktop-init.rules
+
+# remove unneeded files to free space
+rm -f /usr/lib/systemd/user/gnome-session.target.wants/gnome-initial-setup-copy-worker.service
+rm -f /usr/lib/systemd/user/gnome-session.target.wants/gnome-initial-setup-first-login.service
+rm -f /usr/share/gnome-initial-setup/vendor.conf
+rm -rf /usr/share/doc/gnome-initial-setup
+rm -f /usr/libexec/gnome-initial-setup*
+rm -f /usr/lib/systemd/user/gnome-initial-setup-copy-worker.service
+rm -f /usr/lib/systemd/user/gnome-initial-setup-first-login.service
+rm -f /etc/xdg/autostart/gnome-initial-setup-copy-worker.desktop
+rm -f /etc/xdg/autostart/gnome-initial-setup-first-login.desktop
 
 # write the launch script
 cat > /usr/libexec/launch-setup.sh <<EOF

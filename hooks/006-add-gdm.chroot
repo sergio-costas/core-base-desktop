@@ -10,7 +10,6 @@ trap 'umount /proc' EXIT
 
 apt install --no-install-recommends -y \
     gdm3 \
-    gnome-initial-setup \
     polkitd \
     xwayland \
     libgl1-mesa-dri \
@@ -122,9 +121,6 @@ chmod a+x /usr/libexec/gsd-xsettings
 # by Ubuntu Core.
 sed -i "/^ReadWritePaths=/ a \\  /var/lib/extrausers/ \\\\" \
     /usr/lib/systemd/system/accounts-daemon.service
-
-## Skip goa page in gnome-initial-setup
-sed -i 's/skip=language/skip=language;goa/g' /usr/share/gnome-initial-setup/vendor.conf
 
 # Hide gnome-terminal by default
 sed -i 's/OnlyShowIn=/NoDisplay=true\nOnlyShowIn=/g' /usr/share/applications/org.gnome.Terminal.desktop
