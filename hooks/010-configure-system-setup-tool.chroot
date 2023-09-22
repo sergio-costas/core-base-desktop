@@ -30,13 +30,11 @@ cat > /usr/libexec/launch-setup.sh <<EOF
 
 # launch the configuration program
 export G_MESSAGES_DEBUG=all
-/snap/ubuntu-core-desktop-init/current/bin/ubuntu_init
-
-# Inform the user that the system will be rebooted.
-# Maybe we need a way of translating this...
-zenity --info --text="Installation complete.\nSystem will be rebooted"
-
-reboot
+if [ -f "/usr/libexec/ubuntu_init" ]; then
+    /usr/libexec/ubuntu_init
+else
+    /snap/ubuntu-core-desktop-init/current/bin/ubuntu_init
+fi
 
 EOF
 chmod 755 /usr/libexec/launch-setup.sh

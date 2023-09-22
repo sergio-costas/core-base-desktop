@@ -51,7 +51,17 @@ parts:
     prime:
       - -local-debs
 
+  ubuntu-core-desktop-init:
+    plugin: nil
+    override-build: |
+      snap download ubuntu-core-desktop-init
+      unsquashfs *.snap
+      mkdir -p $CRAFT_PART_INSTALL/usr/libexec
+      cp -a squashfs-root/bin/ubuntu_init $CRAFT_PART_INSTALL/usr/libexec/
+      craftctl default
+
   base:
+    after: [ubuntu-core-desktop-init]
     plugin: nil
     source: keyrings
     build-packages:
