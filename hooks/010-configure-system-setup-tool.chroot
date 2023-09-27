@@ -30,11 +30,6 @@ cat > /usr/libexec/launch-setup.sh <<EOF
 
 # launch the configuration program
 export G_MESSAGES_DEBUG=all
-#if [ -f "/usr/libexec/ubuntu_init" ]; then
-#    /usr/libexec/ubuntu_init
-#else
-#    /snap/ubuntu-core-desktop-init/current/bin/ubuntu_init
-#fi
 /snap/ubuntu-core-desktop-init/current/bin/ubuntu_init
 EOF
 chmod 755 /usr/libexec/launch-setup.sh
