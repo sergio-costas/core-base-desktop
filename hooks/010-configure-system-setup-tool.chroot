@@ -6,12 +6,9 @@ apt install --no-install-recommends -y zenity gnome-initial-setup
 
 # Launch ubuntu-core-desktop-init instead of gnome-initial-setup
 mv /usr/share/applications/gnome-initial-setup.desktop /usr/share/applications/ubuntu-core-desktop-init.desktop
-sed -i 's#/usr/libexec/gnome-initial-setup#/usr/libexec/launch-setup.sh#g' /usr/share/applications/ubuntu-core-desktop-init.desktop
+sed -i 's#/usr/libexec/gnome-initial-setup#/snap/ubuntu-core-desktop-init/current/bin/ubuntu_init#g' /usr/share/applications/ubuntu-core-desktop-init.desktop
 
 sed -i 's#gnome-initial-setup#ubuntu-core-desktop-init#g' /usr/share/gnome-session/sessions/gnome-initial-setup.session
-
-cp /usr/share/polkit-1/rules.d/20-gnome-initial-setup.rules /usr/share/polkit-1/rules.d/20-ubuntu-core-desktop-init.rules
-sed -i 's#gnome-initial-setup#ubuntu-core-desktop-init#g' /usr/share/polkit-1/rules.d/20-ubuntu-core-desktop-init.rules
 
 # remove unneeded files to free space
 rm -f /usr/lib/systemd/user/gnome-session.target.wants/gnome-initial-setup-copy-worker.service
@@ -23,14 +20,4 @@ rm -f /usr/lib/systemd/user/gnome-initial-setup-copy-worker.service
 rm -f /usr/lib/systemd/user/gnome-initial-setup-first-login.service
 rm -f /etc/xdg/autostart/gnome-initial-setup-copy-worker.desktop
 rm -f /etc/xdg/autostart/gnome-initial-setup-first-login.desktop
-
-# write the launch script
-cat > /usr/libexec/launch-setup.sh <<EOF
-#!/bin/sh
-
-# launch the configuration program
-export G_MESSAGES_DEBUG=all
-/snap/ubuntu-core-desktop-init/current/bin/ubuntu_init
-EOF
-chmod 755 /usr/libexec/launch-setup.sh
 
