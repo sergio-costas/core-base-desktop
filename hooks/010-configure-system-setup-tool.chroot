@@ -2,7 +2,7 @@
 
 set -e
 
-apt install --no-install-recommends -y zenity gnome-initial-setup
+apt install --no-install-recommends -y gnome-initial-setup
 
 # Launch ubuntu-core-desktop-init instead of gnome-initial-setup
 mv /usr/share/applications/gnome-initial-setup.desktop /usr/share/applications/ubuntu-core-desktop-init.desktop
