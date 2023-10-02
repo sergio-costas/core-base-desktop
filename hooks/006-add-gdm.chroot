@@ -37,6 +37,7 @@ apt install --no-install-recommends -y \
 # Install a basic Ubuntu session
 apt install --no-install-recommends -y \
     ubuntu-session \
+    gkbd-capplet \
     gnome-terminal \
     gnome-settings-daemon \
     gnome-shell-extension-appindicator \
