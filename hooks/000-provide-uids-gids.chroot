@@ -124,6 +124,7 @@ colord:x:113:123:colord colour management daemon:/var/lib/colord:/usr/sbin/nolog
 gnome-initial-setup:x:114:65534::/run/gnome-initial-setup/:/bin/false
 rtkit:x:115:124:RealtimeKit,,,:/proc:/usr/sbin/nologin
 pipewire:x:116:125:Pipewire,,,:/proc:/usr/sbin/nologin
+polkitd:x:999:999:polkit:/nonexistent:/usr/sbin/nologin
 EOF
 cp /etc/passwd /etc/passwd.orig # We make a copy for a later sanity-compare
 
@@ -163,6 +164,7 @@ gdm:*:18459:0:99999:7:::
 colord:*:18495:0:99999:7:::
 gnome-initial-setup:*:18495:0:99999:7:::
 rtkit:*:19390:0:99999:7:::
+polkitd:!*:19635:::::
 EOF
 cp /etc/shadow /etc/shadow.orig # We make a copy for a later sanity-compare
 
@@ -231,6 +233,7 @@ scanner:x:122:
 colord:x:123:
 rtkit:x:124:
 pipewire:x:125:
+polkitd:x:999:
 EOF
 cp /etc/group /etc/group.orig # We make a copy for a later sanity-compare
 
@@ -299,5 +302,6 @@ scanner:!::
 colord:!::
 pipewire:!::
 rtkit:!::
+polkitd:!*::
 EOF
 cp /etc/gshadow /etc/gshadow.orig # We make a copy for a later sanity-compare
