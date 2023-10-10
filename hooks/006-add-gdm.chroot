@@ -43,7 +43,6 @@ apt install --no-install-recommends -y \
     gnome-shell-extension-desktop-icons-ng \
     gnome-shell-extension-ubuntu-dock \
     gnome-shell-extension-ubuntu-tiling-assistant \
-    gnome-shell-extension-manager \
     gnome-control-center \
     libpam-gnome-keyring \
     spice-vdagent \
