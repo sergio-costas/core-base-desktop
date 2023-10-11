@@ -37,6 +37,7 @@ apt install --no-install-recommends -y \
 apt install --no-install-recommends -y \
     ubuntu-session \
     gkbd-capplet \
+    gnome-menus \
     gnome-terminal \
     gnome-settings-daemon \
     gnome-shell-extension-appindicator \
