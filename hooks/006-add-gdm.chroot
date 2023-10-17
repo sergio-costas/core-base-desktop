@@ -46,6 +46,9 @@ apt install --no-install-recommends -y \
     gnome-shell-extension-ubuntu-tiling-assistant \
     gnome-control-center \
     gnome-keyring \
+    fprintd \
+    opensc \
+    bolt \
     libpam-gnome-keyring \
     spice-vdagent \
     xdg-desktop-portal \
