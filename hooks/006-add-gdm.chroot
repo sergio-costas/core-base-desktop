@@ -141,3 +141,7 @@ rm -f /usr/lib/systemd/user/org.gnome.Shell*
 
 # Stop "gnome-language-selector" showing in the Dash
 rm -f /usr/share/applications/gnome-language-selector.desktop
+
+# Add a delay on restart for xdg-desktop-portal-*
+sed -i "s/^ExecStart=/RestartSec=1\nExecStart=/g" /usr/lib/systemd/user/xdg-desktop-portal-gtk.service
+sed -i "s/^ExecStart=/RestartSec=1\nExecStart=/g" /usr/lib/systemd/user/xdg-desktop-portal-gnome.service
