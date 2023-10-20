@@ -68,11 +68,15 @@ EOF
 cat <<EOF >/etc/apt/preferences
 Package: *
 Pin: origin ""
-Pin-Priority: 1002
+Pin-Priority: 1005
 
 Package: *
 Pin: release o=LP-PPA-desktop-snappers-core-desktop
 Pin-Priority: 1001
+
+Package: *
+Pin: release o=LP-PPA-desktop-snappers-core-desktop-backports
+Pin-Priority: 1002
 
 EOF
 
@@ -109,6 +113,7 @@ jXjiWv0P2PA0Vg==
 -----END PGP PUBLIC KEY BLOCK-----
 EOF
 echo "deb http://ppa.launchpad.net/desktop-snappers/core-desktop/ubuntu jammy main" > /etc/apt/sources.list.d/desktop-snappers.list
+echo "deb http://ppa.launchpad.net/desktop-snappers/core-desktop-backports/ubuntu jammy main" >> /etc/apt/sources.list.d/desktop-snappers.list
 
 # install some packages we need
 apt update

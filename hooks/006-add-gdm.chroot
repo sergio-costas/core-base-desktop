@@ -37,34 +37,37 @@ apt install --no-install-recommends -y \
 apt install --no-install-recommends -y \
     ubuntu-session \
     gkbd-capplet \
+    gnome-menus \
     gnome-terminal \
     gnome-settings-daemon \
     gnome-shell-extension-appindicator \
     gnome-shell-extension-desktop-icons-ng \
     gnome-shell-extension-ubuntu-dock \
+    gnome-shell-extension-ubuntu-tiling-assistant \
     gnome-control-center \
+    gnome-keyring \
+    fprintd \
+    opensc \
+    bolt \
     libpam-gnome-keyring \
     spice-vdagent \
     xdg-desktop-portal \
     xdg-desktop-portal-gnome \
     xdg-desktop-portal-gtk \
-    xdg-user-dirs-gtk
+    xdg-user-dirs-gtk \
+    inotify-tools
 
 # Remove setuid from some executables we're not using
 chmod u-s,g-s /usr/bin/pkexec
-chmod u-s,g-s /usr/libexec/camel-lock-helper-1.2
 
 # Remove Ubuntu X11 session
 rm /usr/share/xsessions/ubuntu.desktop
-
-# Move D-Bus policy out of /etc
-mv /etc/dbus-1/system.d/gdm.conf /usr/share/dbus-1/system.d/
 
 # Move display-manager.service symlink out of /etc
 rm /etc/systemd/system/display-manager.service
 ln -s gdm.service /lib/systemd/system/display-manager.service
 # Delay gdm until snapd.seeded and cloud-config are complete
-sed -i '/^Description=/ a # delay until snapd finishes seeding\nAfter=snapd.seeded.service cloud-config.service' /lib/systemd/system/gdm.service
+sed -i '/^Description=/ a # delay until snapd finishes seeding\nAfter=snapd.seeded.service' /lib/systemd/system/gdm.service
 
 # Remove D-Bus service activation files provided by
 # ubuntu-desktop-session snap.
@@ -76,6 +79,9 @@ rm /usr/share/dbus-1/services/org.gnome.Shell.Screencast.service
 rm -f /usr/share/dbus-1/services/org.freedesktop.IBus.service
 rm -f /usr/share/dbus-1/services/org.freedesktop.portal.IBus.service
 rm -f /usr/share/dbus-1/services/org.freedesktop.ColorHelper.service
+
+# Remove un-needed D-Bus service activation files
+rm -f /usr/share/dbus-1/services/org.gnome.evolution.dataserver.*
 
 # Remove systemd activation in services managed by
 # ubuntu-desktop-session snap
