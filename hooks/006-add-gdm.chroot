@@ -132,6 +132,14 @@ sed -i "/^ReadWritePaths=/ a \\  /var/lib/extrausers/ \\\\" \
 # Hide gnome-terminal by default
 sed -i 's/OnlyShowIn=/NoDisplay=true\nOnlyShowIn=/g' /usr/share/applications/org.gnome.Terminal.desktop
 
+# change default wallpapers
+cp /usr/share/gnome-background-properties/ubuntu-wallpapers.xml /usr/share/gnome-background-properties/ubuntu-core-desktop-wallpapers.xml
+sed -i 's/warty-final-ubuntu.png/ubuntu-core-desktop-l.png/g' /usr/share/gnome-background-properties/ubuntu-core-desktop-wallpapers.xml
+sed -i 's/ubuntu-wallpaper-d.png/ubuntu-core-desktop-d.png/g' /usr/share/gnome-background-properties/ubuntu-core-desktop-wallpapers.xml
+sed -i 's/warty-final-ubuntu.png/ubuntu-core-desktop-l.png/g' /usr/share/glib-2.0/schemas/10_ubuntu-settings.gschema.override
+sed -i 's/ubuntu-wallpaper-d.png/ubuntu-core-desktop-d.png/g' /usr/share/glib-2.0/schemas/10_ubuntu-settings.gschema.override
+glib-compile-schemas /usr/share/glib-2.0/schemas
+
 # Remove regular Ubuntu sessions, so only confined session is available
 rm -f /usr/share/wayland-sessions/ubuntu.desktop
 rm -f /usr/share/wayland-sessions/ubuntu-wayland.desktop
