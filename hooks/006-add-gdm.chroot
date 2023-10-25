@@ -47,6 +47,7 @@ apt install --no-install-recommends -y \
     gnome-control-center \
     gnome-keyring \
     fprintd \
+    libpam-fprintd \
     opensc \
     bolt \
     libpam-gnome-keyring \
