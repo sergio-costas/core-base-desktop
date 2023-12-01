@@ -2,11 +2,11 @@
 
 set -e
 
-apt install --no-install-recommends -y gnome-initial-setup
+apt install --no-install-recommends -y gnome-initial-setup dconf-cli
 
 # Launch ubuntu-core-desktop-init instead of gnome-initial-setup
 mv /usr/share/applications/gnome-initial-setup.desktop /usr/share/applications/ubuntu-core-desktop-init.desktop
-sed -i 's#/usr/libexec/gnome-initial-setup#/snap/ubuntu-core-desktop-init/current/bin/ubuntu_init#g' /usr/share/applications/ubuntu-core-desktop-init.desktop
+sed -i 's#/usr/libexec/gnome-initial-setup#/usr/bin/launch_init.sh#g' /usr/share/applications/ubuntu-core-desktop-init.desktop
 
 sed -i 's#gnome-initial-setup#ubuntu-core-desktop-init#g' /usr/share/gnome-session/sessions/gnome-initial-setup.session
 
@@ -21,3 +21,20 @@ rm -f /usr/lib/systemd/user/gnome-initial-setup-first-login.service
 rm -f /etc/xdg/autostart/gnome-initial-setup-copy-worker.desktop
 rm -f /etc/xdg/autostart/gnome-initial-setup-first-login.desktop
 
+# configure the Ubuntu theme colors for the initial session
+sed -i '2 i "stylesheetName": "Yaru/gnome-shell.css",' /usr/share/gnome-shell/modes/initial-setup.json
+sed -i '3 i "colorScheme": "prefer-light",' /usr/share/gnome-shell/modes/initial-setup.json
+sed -i '4 i "themeResourceName": "theme/Yaru/gnome-shell-theme.gresource",' /usr/share/gnome-shell/modes/initial-setup.json
+sed -i '5 i "iconsResourceName": "theme/Yaru/gnome-shell-icons.gresource",' /usr/share/gnome-shell/modes/initial-setup.json
+
+cat > /usr/bin/launch_init.sh <<EOF
+#!/bin/sh
+
+/usr/bin/dconf write /org/gnome/desktop/background/picture-options \"zoom\"
+/usr/bin/dconf write /org/gnome/desktop/background/picture-uri \"file:///usr/share/backgrounds/ubuntu-core-desktop-l.png\"
+/usr/bin/dconf write /org/gnome/desktop/background/picture-uri-dark \"file:///usr/share/backgrounds/ubuntu-core-desktop-d.png\"
+
+/snap/ubuntu-core-desktop-init/current/bin/ubuntu_init
+EOF
+
+chmod 755 /usr/bin/launch_init.sh
