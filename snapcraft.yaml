@@ -94,6 +94,7 @@ parts:
     build-packages:
       - shellcheck
       - distro-info
+      - dconf-cli
     override-pull: |
       craftctl set version="$(/bin/date +%Y%m%d)"
       craftctl default

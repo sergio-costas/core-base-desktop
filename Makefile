@@ -31,6 +31,9 @@ install:
 		mknod -m 666 $(DESTDIR)/dev/urandom c 1 9
 	# copy static files verbatim
 	/bin/cp -a static/* $(DESTDIR)
+	# generate dconf data for init
+	/usr/bin/dconf compile init-default.compiled dconf-init-data
+	/bin/mv init-default.compiled $(DESTDIR)/
 	mkdir -p $(DESTDIR)/install-data
 	/bin/cp -r $(CRAFT_STAGE)/local-debs $(DESTDIR)/install-data/local-debs
 	$(CRAFT_PROJECT_DIR)/generate-connections.py $(CRAFT_PROJECT_DIR)/snap-connections.txt $(DESTDIR)/usr/libexec/snap-connections.sh
