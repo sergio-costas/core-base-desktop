@@ -1,4 +1,4 @@
-name: core24
+name: core24-desktop
 # version: "24"
 adopt-info: bootstrap
 summary: Runtime environment based on Ubuntu 24.04
@@ -9,6 +9,10 @@ type: base
 build-base: core24
 grade: stable
 assumes: [snapd2.55.5]
+
+platforms:
+  amd64:
+  arm64:
 
 parts:
   base:
@@ -58,10 +62,12 @@ parts:
     build-packages:
       - shellcheck
       - distro-info
+      - dconf-cli
     override-pull: |
       craftctl set version="$(/bin/date +%Y%m%d)"
       craftctl default
     override-prime: |
       craftctl default
+      rm -f /etc/systemd/user/pipewire-session-manager.service
       # ensure build-in tests are run
       cd ${CRAFT_PART_SRC} && make test TESTDIR=${CRAFT_PRIME}

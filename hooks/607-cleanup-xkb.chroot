@@ -5,7 +5,9 @@
 
 set -xe
 
-echo "I: Removing xkb data"
+# Leave XKB data intact for Core Desktop
 
-rm -rv /usr/share/X11/xkb
-rmdir /usr/share/X11
+#echo "I: Removing xkb data"
+#
+#rm -rv /usr/share/X11/xkb
+#rmdir /usr/share/X11

@@ -33,7 +33,11 @@ install:
 		mknod -m 666 $(DESTDIR)/dev/urandom c 1 9
 	# copy static files verbatim
 	/bin/cp -a static/* $(DESTDIR)
+	# generate dconf data for init
+	/usr/bin/dconf compile init-default.compiled dconf-init-data
+	/bin/mv init-default.compiled $(DESTDIR)/
 	mkdir -p $(DESTDIR)/install-data
+	$(CRAFT_PROJECT_DIR)/generate-connections.py $(CRAFT_PROJECT_DIR)/snap-connections.txt $(DESTDIR)/usr/libexec/snap-connections.sh
 	# customize
 	set -eux; for f in ./hooks/[0-9]*.chroot; do		\
 		base="$$(basename "$${f}")";			\

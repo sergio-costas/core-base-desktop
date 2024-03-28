@@ -22,3 +22,14 @@ done
 # Work-around for tzdata still adding /etc/timezone. But:
 # https://git.launchpad.net/ubuntu/+source/systemd/commit/?h=ubuntu/noble&id=28efd34bc095a7bae923f13e23198610b5fe253d
 rm -f /etc/timezone
+
+# Move locale, im-config and keyboard from /etc/default
+# to writable directory
+for f in locale im-config keyboard; do
+    if [ -e /etc/default/$f ]; then
+        echo "I: Moving /etc/default/$f to /etc/writable/default/"
+        mv /etc/default/$f /etc/writable/default/$f
+    fi
+    echo "I: Linking /etc/default/$f to /etc/writable/default/"
+    ln -s /etc/writable/default/$f /etc/default/$f
+done
