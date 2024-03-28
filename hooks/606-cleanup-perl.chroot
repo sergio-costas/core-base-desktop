@@ -17,4 +17,4 @@ rm usr/sbin/update-rc.d
 # remove perl libraries
 rm usr/lib/ssl/misc/CA.pl
 rm usr/lib/ssl/misc/tsget.pl
-rm -rv usr/share/perl5
+#rm -rv usr/share/perl5

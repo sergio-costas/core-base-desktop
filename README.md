@@ -110,6 +110,34 @@ works as expected.
 The `.test` scripts will be run after building with snapcraft or when
 doing a manual "make test" in the source tree.
 
+# Testing custom .deb packages
+
+Sometimes, modified .deb packages are required. These are uploaded into
+an specific PPA to make them available for building, but during development,
+they must be tested locally before. To do so, it is possible to create
+a folder called *test-debs* and copy inside the custom .deb packages.
+That folder is managed like a standard APT repository, and it is pinned
+to the maximum priority, thus ensuring that they will be installed over
+any other package.
+
+# Connect specific plugs during installation
+
+Sometimes, it is required to connect some plugs that, by default, aren't
+being connected. Although the right way of doing it should be modifying
+the gadget-desktop snap, there is a way of doing it for quick tests.
+Just edit the file *snap-connections.txt* in the project's root folder,
+and add one line with each plug to connect (and, if needed, the slot).
+For example, to ensure that the *locale-control* plug is connected in the
+*ubuntu-core-desktop* snap, just edit that file and add this line:
+
+    ubuntu-core-desktop:locale-control
+
+When this file exists, a shell script file is created that tries to connect
+each plug; also a systemd service called *manual-plug-connection.service*
+is created and enabled, that launches that shell script. The script tries
+to connect all plugs once each second, and only when all succeeded, it exits
+and disables the service, thus it won't be run again in next boots.
+
 # Bootchart
 
 It is possible to enable bootcharts by adding `ubuntu_core.bootchart`

@@ -1,0 +1,30 @@
+#!/bin/bash -x
+
+set -e
+
+apt-get install --no-install-recommends -y gnome-initial-setup
+
+# Launch ubuntu-core-desktop-init instead of gnome-initial-setup
+mv /usr/share/applications/gnome-initial-setup.desktop /usr/share/applications/ubuntu-core-desktop-init.desktop
+sed -i 's#^Exec=.*$#Exec=/snap/ubuntu-core-desktop-init/current/bin/ubuntu_init#g' /usr/share/applications/ubuntu-core-desktop-init.desktop
+
+sed -i 's#gnome-initial-setup#ubuntu-core-desktop-init#g' /usr/share/gnome-session/sessions/gnome-initial-setup.session
+
+# remove unneeded files to free space
+rm -f /usr/lib/systemd/user/gnome-session.target.wants/gnome-initial-setup-copy-worker.service
+rm -f /usr/lib/systemd/user/gnome-session.target.wants/gnome-initial-setup-first-login.service
+rm -f /usr/share/gnome-initial-setup/vendor.conf
+rm -rf /usr/share/doc/gnome-initial-setup
+rm -f /usr/libexec/gnome-initial-setup*
+rm -f /usr/lib/systemd/user/gnome-initial-setup-copy-worker.service
+rm -f /usr/lib/systemd/user/gnome-initial-setup-first-login.service
+rm -f /etc/xdg/autostart/gnome-initial-setup-copy-worker.desktop
+rm -f /etc/xdg/autostart/gnome-initial-setup-first-login.desktop
+
+# configure the Ubuntu theme colors for the initial session
+sed -i '2 i "stylesheetName": "Yaru/gnome-shell.css",' /usr/share/gnome-shell/modes/initial-setup.json
+sed -i '3 i "colorScheme": "prefer-light",' /usr/share/gnome-shell/modes/initial-setup.json
+sed -i '4 i "themeResourceName": "theme/Yaru/gnome-shell-theme.gresource",' /usr/share/gnome-shell/modes/initial-setup.json
+sed -i '5 i "iconsResourceName": "theme/Yaru/gnome-shell-icons.gresource",' /usr/share/gnome-shell/modes/initial-setup.json
+
+mv /init-default.compiled /usr/share/gnome-initial-setup/initial-setup-dconf-defaults
