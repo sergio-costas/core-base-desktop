@@ -126,6 +126,7 @@ rtkit:x:115:124:RealtimeKit,,,:/proc:/usr/sbin/nologin
 pipewire:x:116:125:Pipewire,,,:/proc:/usr/sbin/nologin
 polkitd:x:117:126:polkit:/nonexistent:/usr/sbin/nologin
 systemd-journal:x:118:106:Reserved:/run/systemd:/bin/false
+provd:x:119:127:Reserved:/run/provd:/bin/false
 EOF
 cp /etc/passwd /etc/passwd.orig # We make a copy for a later sanity-compare
 
@@ -217,6 +218,7 @@ messagebus:x:103:
 snappypkg:x:104:
 ssh:x:105:
 systemd-journal:x:106:
+input:x:107:
 systemd-timesync:x:108:
 systemd-network:x:109:
 systemd-resolve:x:110:
@@ -225,10 +227,9 @@ kvm:x:112:
 syslog:x:114:
 pkcs11:x:115:
 tss:x:116:
-input:x:107:
 render:x:117:
-sgx:x:119:
 _ssh:x:118:
+sgx:x:119:
 geoclue:x:120:
 gdm:x:121:
 scanner:x:122:
@@ -236,6 +237,7 @@ colord:x:123:
 rtkit:x:124:
 pipewire:x:125:
 polkitd:x:126:
+provd:x:127:gnome-initial-setup
 EOF
 cp /etc/group /etc/group.orig # We make a copy for a later sanity-compare
 
@@ -305,5 +307,6 @@ colord:!::
 pipewire:!::
 rtkit:!::
 polkitd:!*::
+provd:!::gnome-initial-setup
 EOF
 cp /etc/gshadow /etc/gshadow.orig # We make a copy for a later sanity-compare
