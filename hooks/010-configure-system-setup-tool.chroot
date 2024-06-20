@@ -22,7 +22,7 @@ mkdir -p /run/gnome-initial-setup/.cache
 until [ -S /run/gnome-initial-setup/desktop-provision/init.socket ]; do
 	sleep 1
 done
-env DBUS_SESSION_BUS_ADDRESS="unix:path=\$XDG_RUNTIME_DIR/bus" WAYLAND_DISPLAY=/run/usr/114/wayland-0 /snap/ubuntu-desktop-init/current/bin/ubuntu_init
+env DBUS_SESSION_BUS_ADDRESS="unix:path=\$XDG_RUNTIME_DIR/bus" WAYLAND_DISPLAY=\$XDG_RUNTIME_DIR/wayland-0 /snap/ubuntu-desktop-init/current/bin/ubuntu_init
 EOF
 
 # remove unneeded files to free space
