@@ -25,6 +25,21 @@ done
 env DBUS_SESSION_BUS_ADDRESS="unix:path=\$XDG_RUNTIME_DIR/bus" WAYLAND_DISPLAY=\$XDG_RUNTIME_DIR/wayland-0 /snap/ubuntu-desktop-init/current/bin/ubuntu_init
 EOF
 
+mkdir -p /usr/share/desktop-provision
+
+cat > /usr/share/desktop-provision/whitelabel.yaml << EOF
+mode: core-desktop
+pages:
+  eula:
+    visible: false
+  ubuntu-pro:
+    visible: false
+  telemetry:
+    visible: false
+
+EOF
+
+
 # remove unneeded files to free space
 rm -f /usr/lib/systemd/user/gnome-session.target.wants/gnome-initial-setup-copy-worker.service
 rm -f /usr/lib/systemd/user/gnome-session.target.wants/gnome-initial-setup-first-login.service
