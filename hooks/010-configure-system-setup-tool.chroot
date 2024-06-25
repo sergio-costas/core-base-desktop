@@ -34,9 +34,7 @@ mode: core-desktop
 pages:
   eula:
     visible: false
-  ubuntu-pro:
-    visible: false
-  telemetry:
+  ubuntu-pro-onboarding:
     visible: false
   accessibility:
     visible: false
