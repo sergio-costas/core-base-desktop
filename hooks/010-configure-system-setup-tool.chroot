@@ -36,8 +36,6 @@ pages:
     visible: false
   ubuntu-pro-onboarding:
     visible: false
-  accessibility:
-    visible: false
 
 EOF
 
