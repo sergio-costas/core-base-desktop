@@ -2,30 +2,29 @@
 
 set -eu
 
-mkdir -p "/usr/lib/locale"
+# mkdir -p "/usr/lib/locale"
 
-declare -A found_encodings
+# declare -A found_encodings
 
-while read -r locale encoding; do
-    encoding_canonical="$(echo "${encoding}" | sed 's/[A-Z]/\l&/g;s/[^a-z0-9]//g')"
-    case "${locale}" in
-        C|C.*)
-        ;;
-        *)
-            ln -s "C.${encoding_canonical}" "/usr/lib/locale/${locale}"
-        ;;
-    esac
-    found_encodings["${encoding}"]="${encoding_canonical}"
-done </usr/share/i18n/SUPPORTED
+# while read -r locale encoding; do
+#     encoding_canonical="$(echo "${encoding}" | sed 's/[A-Z]/\l&/g;s/[^a-z0-9]//g')"
+#     case "${locale}" in
+#         C|C.*)
+#         ;;
+#         *)
+#             ln -s "C.${encoding_canonical}" "/usr/lib/locale/${locale}"
+#         ;;
+#     esac
+#     found_encodings["${encoding}"]="${encoding_canonical}"
+# done </usr/share/i18n/SUPPORTED
 
-for encoding in "${!found_encodings[@]}"; do
-    encoding_canonical="${found_encodings[${encoding}]}"
-    localedef --no-archive -f "${encoding}" -i C "C.${encoding_canonical}"
-done
+# for encoding in "${!found_encodings[@]}"; do
+#     encoding_canonical="${found_encodings[${encoding}]}"
+#     localedef --no-archive -f "${encoding}" -i C "C.${encoding_canonical}"
+# done
 
-apt-get purge -y locales
+# apt-get purge -y locales
 
 # restore configuration so the default locale can be found
-printf 'LANG=C.UTF-8\n' > /etc/writable/locale.conf
+mv /etc/locale.conf /etc/writable/locale.conf
 ln -s writable/locale.conf /etc/locale.conf
-ln -s ../locale.conf /etc/default/locale
