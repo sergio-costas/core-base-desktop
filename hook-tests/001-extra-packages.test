@@ -40,7 +40,6 @@ dbus-user-session
 e2fsprogs
 fdisk
 findutils
-gcc-11-base:amd64
 gpgv
 grep
 gzip
@@ -93,8 +92,6 @@ libprocps8:amd64
 libseccomp2:amd64
 libselinux1:amd64
 libsemanage-common
-libsemanage1:amd64
-libsepol1:amd64
 libsmartcols1:amd64
 libss2:amd64
 libstdc++6:amd64
@@ -134,3 +131,7 @@ if [ -n "$DIFF" ]; then
     echo "test_pkg_removal.sh test."
     exit 1
 fi
+
+# TODO: test is not ideal but at this point we have no apt/dpkg db anymore
+echo "Ensure that the cryptsetup version is pulled from the fde-ice ppa"
+grep -E 'cryptsetup.*+ice' usr/share/snappy/dpkg.list 
