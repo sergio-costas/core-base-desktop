@@ -236,6 +236,7 @@ colord:x:123:
 rtkit:x:124:
 pipewire:x:125:
 polkitd:x:126:
+provd:x:127:gnome-initial-setup
 EOF
 cp /etc/group /etc/group.orig # We make a copy for a later sanity-compare
 
@@ -305,5 +306,6 @@ colord:!::
 pipewire:!::
 rtkit:!::
 polkitd:!*::
+provd:!::gnome-initial-setup
 EOF
 cp /etc/gshadow /etc/gshadow.orig # We make a copy for a later sanity-compare
