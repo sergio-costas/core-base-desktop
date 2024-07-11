@@ -4,6 +4,8 @@
 
 set -ex
 
+export DEBIAN_FRONTEND=noninteractive
+
 echo "I: Removing the debian legacy"
 
 # store manifest of all installed packages
