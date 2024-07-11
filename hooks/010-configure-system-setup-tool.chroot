@@ -2,6 +2,8 @@
 
 set -e
 
+export DEBIAN_FRONTEND=noninteractive
+
 apt install --no-install-recommends -y gnome-initial-setup provd
 
 mv /usr/share/applications/gnome-initial-setup.desktop /usr/share/applications/ubuntu-core-desktop-init.desktop
