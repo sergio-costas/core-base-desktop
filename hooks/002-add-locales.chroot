@@ -7,6 +7,8 @@ set -e
 ORIG_BASE_DIR="/usr/share/locale-langpack"
 DEST_BASE_DIR="/usr/share/locale"
 
+export DEBIAN_FRONTEND=noninteractive
+
 apt install -y '^language-pack-gnome-[a-z]+-base$'
 
 for PATH in "$ORIG_BASE_DIR"/*; do
