@@ -176,6 +176,7 @@ apt-get update
 apt-get dist-upgrade -y --allow-downgrades
 
 PACKAGES=(
+    alsa-utils
     apparmor
     bash-completion
     bzip2

@@ -22,9 +22,6 @@ apt-get install --no-install-recommends -y \
     fonts-ubuntu \
     ubuntu-settings \
     xdg-user-dirs \
-    pipewire \
-    wireplumber \
-    pipewire-pulse \
     pulseaudio-utils \
     libgsound0 \
     gsound-tools \
