@@ -75,3 +75,5 @@
 /usr/share/polkit-1                     auto                    persistent  transition  none
 /var/lib/colord                         auto                    persistent  transition  none
 /var/lib/fprint                         auto                    persistent  transition  none
+# Firefox policy
+/etc/firefox                            auto                    persistent  transition  none
