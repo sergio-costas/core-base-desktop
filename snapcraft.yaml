@@ -21,8 +21,9 @@ parts:
     build-packages:
       - wget
     build-environment:
-      - RELEASE: "24.04.1"
-      - BASE: ubuntu-base-${RELEASE}-base-${CRAFT_ARCH_BUILD_FOR}.tar.gz
+      - RELEASE: "24.04"
+      - DOT_RELEASE: "1"
+      - BASE: ubuntu-base-${RELEASE}${DOT_RELEASE:+.$DOT_RELEASE}-base-${CRAFT_ARCH_BUILD_FOR}.tar.gz
       - DIR_URL: https://cdimage.ubuntu.com/ubuntu-base/releases/${RELEASE}/release
       - URL: ${DIR_URL}/${BASE}
       - SHA256: ${DIR_URL}/SHA256SUMS
@@ -59,10 +60,20 @@ parts:
     build-packages:
       - shellcheck
       - distro-info
+      - python3-debian
+      - python3-requests
+      - python3-yaml
       - dconf-cli
     override-pull: |
-      craftctl set version="$(/bin/date +%Y%m%d)"
       craftctl default
+      # detect whether we are doing a fips build on LP
+      if git remote get-url origin | grep "fips"; then
+        craftctl set version="$(/bin/date +%Y%m%d)+fips"
+        echo "SNAP_FIPS_BUILD=1" > ./.fips-env
+      else
+        craftctl set version="$(/bin/date +%Y%m%d)"
+        rm -f ./.fips-env
+      fi
     override-prime: |
       craftctl default
       # ensure build-in tests are run
