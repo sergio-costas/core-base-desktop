@@ -25,7 +25,7 @@ jobs:
         run: curl -s https://storage.googleapis.com/snapd-spread-tests/spread/spread-amd64.tar.gz | sudo tar xzv -C /usr/bin
       - name: Build snap
         run: |
-          file /bin/ls
+          file /usr/bin/spread
           spread -artifacts=./artifacts google-nested:tests/spread/build/
           find ./artifacts -type f -name "*.artifact" -exec cp {} "${{ github.workspace }}" \;
 
