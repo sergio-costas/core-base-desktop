@@ -53,9 +53,11 @@
 /var/lib/apparmor                       auto                    persistent  transition  none
 /var/lib/dbus                           auto                    persistent  none        none
 /var/lib/dhcp                           auto                    persistent  none        none
+/var/lib/dhcpcd                         auto                    persistent  transition  none
 # cloud-init
 /etc/cloud                              auto                    persistent  transition  none
 /var/lib/cloud                          auto                    persistent  none        none
+/var/lib/waagent                        auto                    persistent  none  none
 # for various clouds like GCE
 /etc/sysctl.d                           auto                    persistent  transition  none
 # swapfile
