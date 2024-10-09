@@ -231,6 +231,7 @@ else
 fi
 
 PACKAGES=(
+    alsa-utils
     apparmor
     bash-completion
     bzip2
