@@ -284,6 +284,7 @@ PACKAGES=(
     xkb-data
     locales
     cracklib-runtime
+    python3-dbus
 )
 
 case "$(dpkg --print-architecture)" in

@@ -32,6 +32,32 @@ apt-get install --no-install-recommends -y \
     pkexec \
     xdg-desktop-portal
 
+# Install a basic Ubuntu session
+# apt-get install --no-install-recommends -y \
+#     ubuntu-session \
+#     gkbd-capplet \
+#     gnome-menus \
+#     gnome-terminal \
+#     gnome-settings-daemon \
+#     gnome-shell-extension-appindicator \
+#     gnome-shell-extension-desktop-icons-ng \
+#     gnome-shell-extension-ubuntu-dock \
+#     gnome-shell-extension-ubuntu-tiling-assistant \
+#     gnome-control-center \
+#     gnome-keyring \
+#     fprintd \
+#     libpam-fprintd \
+#     opensc \
+#     bolt \
+#     libpam-gnome-keyring \
+#     spice-vdagent \
+#     xdg-desktop-portal \
+#     xdg-desktop-portal-gnome \
+#     xdg-desktop-portal-gtk \
+#     xdg-user-dirs-gtk \
+#     inotify-tools \
+#     alsa-ucm-conf
+
 # Remove setuid from some executables we're not using
 chmod u-s,g-s /usr/bin/pkexec
 
@@ -92,8 +118,10 @@ chmod a+x /usr/libexec/gsd-xsettings
 # accounts-daemon uses systemd to lock down the paths it can write
 # to. That list of paths does not include the extrausers database used
 # by Ubuntu Core.
-sed -i "/^ReadWritePaths=/ a \\  /var/lib/extrausers/ \\\\" \
-    /usr/lib/systemd/system/accounts-daemon.service
+#sed -i "/^ReadWritePaths=/ a \\  /var/lib/extrausers/ \\\\" \
+#    /usr/lib/systemd/system/accounts-daemon.service
+
+rm -f /usr/lib/systemd/system/accounts-daemon.service
 
 # Hide gnome-terminal by default
 #sed -i 's/OnlyShowIn=/NoDisplay=true\nOnlyShowIn=/g' /usr/share/applications/org.gnome.Terminal.desktop

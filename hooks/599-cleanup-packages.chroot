@@ -11,12 +11,17 @@ dpkg -r --force-all pipewire wireplumber pipewire-pulse pipewire-alsa
 for i in $(dpkg -L pipewire-bin | grep -v "^/\.$" | grep -v "usr/share" | sed -E -e 's,^/,,' | tac) ; do
     rm -df "$i" || /bin/true
 done
+
+# Remove accouts-service
+dpkg -r --force-all accountsservice
+
 echo Removing xdg-desktop-portal-XXX
 # Save the portal file
-cp /usr/share/xdg-desktop-portal/portals/gnome.portal /usr/share/xdg-desktop-portal/portals/gnome.portal.preserve
+cp /usr/share/xdg-desktop-portal/portals/gnome.portal.in /usr/share/xdg-desktop-portal/portals/gnome.portal.preserve
 dpkg -r --force-all xdg-desktop-portal-gtk xdg-desktop-portal-gnome
 # Now, restore the portal file
 mv /usr/share/xdg-desktop-portal/portals/gnome.portal.preserve /usr/share/xdg-desktop-portal/portals/gnome.portal
 
 # Remove all the gnome services to ensure that they don't interfere with the ones in the session snap
 rm -f /usr/share/dbus-1/services/org.gnome.*
+
