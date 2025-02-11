@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+echo Removing pipewire
+# remove packages that were installed due to dependencies but that we
+# must remove.
+dpkg -r --force-all pipewire pipewire-bin wireplumber pipewire-pulse libspa-0.2-modules libpipewire-0.3-modules
