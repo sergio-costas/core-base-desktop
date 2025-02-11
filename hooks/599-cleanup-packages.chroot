@@ -20,3 +20,8 @@ mv /usr/share/xdg-desktop-portal/portals/gnome.portal.preserve /usr/share/xdg-de
 
 # Remove all the gnome services to ensure that they don't interfere with the ones in the session snap
 rm -f /usr/share/dbus-1/services/org.gnome.*
+
+echo Removing udisks2
+dpkg -r --force-all udisks2
+rm -f /usr/lib/systemd/user/gvfs-udisks2-volume-monitor.service
+
