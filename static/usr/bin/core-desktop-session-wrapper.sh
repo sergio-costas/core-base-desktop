@@ -27,7 +27,7 @@ dbus-update-activation-environment --systemd DISPLAY=:0 WAYLAND_DISPLAY=wayland-
 function fixup_xauthority() {
     while :; do
         sleep 1s
-        if [ $session_type = "KDE" ]; then
+        if [ "$session_type" = "KDE" ]; then
             xauth_file="$(ls -1t $XDG_RUNTIME_DIR/snap.$snap_name/xauth_* | head -n1)"
         else
             xauth_file="$(ls -1t $XDG_RUNTIME_DIR/snap.$snap_name/.mutter-Xwaylandauth.* | head -n1)"
@@ -38,7 +38,7 @@ function fixup_xauthority() {
         fi
     done
 }
-if [ $session_type = "KDE" ]; then
+if [ "$session_type" = "KDE" ]; then
     # Temporary workaround until we have a better way to expose our services and targets
     # 1. Expose our targets, services and overloads
     rm -rf $XDG_RUNTIME_DIR/systemd/user.control
