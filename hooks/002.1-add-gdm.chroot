@@ -29,11 +29,7 @@ apt-get install --no-install-recommends -y \
     libcanberra-pulse \
     libsnapd-glib-2-1 \
     ibus \
-    pkexec \
     xdg-desktop-portal
-
-# Remove setuid from some executables we're not using
-chmod u-s,g-s /usr/bin/pkexec
 
 # Remove Ubuntu X11 session
 rm /usr/share/xsessions/ubuntu.desktop
