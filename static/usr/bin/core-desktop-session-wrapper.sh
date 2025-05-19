@@ -61,7 +61,6 @@ fixup_xauthority &
 ln -sf "snap.$snap_name/wayland-0" $XDG_RUNTIME_DIR/wayland-0
 # Symlink sockets for pipewire and pipewire-pulse
 ln -sf "snap.pipewire/pipewire-0" $XDG_RUNTIME_DIR/pipewire-0
-mkdir -p $XDG_RUNTIME_DIR/pulse
-ln -sf "../snap.pipewire/pulse/native" $XDG_RUNTIME_DIR/pulse/native
+ln -sf "snap.pipewire/pulse" $XDG_RUNTIME_DIR/pulse
 
 exec "/snap/bin/$snap_cmd"
